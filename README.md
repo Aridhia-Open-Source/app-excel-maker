@@ -1,6 +1,6 @@
 # CSV to Excel Converter
 
-A self-contained R Shiny app that combines multiple CSV files from a folder into a
+A self-contained app that combines multiple CSV files from a folder into a
 single Excel workbook — one sheet per file. It presents a guided, four-step wizard with
 an in-browser folder navigator, so users never need to type file paths by hand. Built for
 sandboxed research environments such as Aridhia's Digital Research Environment, where the
