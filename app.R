@@ -1,8 +1,9 @@
-library(shiny)
-library(bslib)
-library(shinyjs)
-library(readxl)
-library(writexl)
+# --- Ensure required packages are installed, then load them ----------------
+required_pkgs <- c("shiny", "bslib", "shinyjs", "readxl", "writexl")
+to_install <- required_pkgs[!vapply(required_pkgs, requireNamespace,
+                                    logical(1), quietly = TRUE)]
+if (length(to_install)) install.packages(to_install)
+invisible(lapply(required_pkgs, library, character.only = TRUE))
 
 # --- Configuration ---
 DEFAULT_BASE_DIR      <- "/home/workspace/files"
@@ -387,11 +388,11 @@ server <- function(input, output, session) {
     if (!grepl("\\.xlsx$", fn, ignore.case = TRUE)) fn <- paste0(fn, ".xlsx")
     tagList(
       div(class = "review-line", span(class = "k", "Source folder:"),
-          span(class = "path-badge", source_path() %||% "-")),
+          span(class = "path-badge", source_path() %||% "—")),
       div(class = "review-line", span(class = "k", "Files selected:"),
           sprintf("%d", length(input$csv_selection))),
       div(class = "review-line", span(class = "k", "Output folder:"),
-          span(class = "path-badge", output_path() %||% "-")),
+          span(class = "path-badge", output_path() %||% "—")),
       div(class = "review-line", span(class = "k", "File name:"), tags$code(fn))
     )
   })
